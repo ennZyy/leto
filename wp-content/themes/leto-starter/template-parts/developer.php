@@ -40,7 +40,7 @@ $leto_developer_features = array(
 			<div class="leto-developer__content">
 				<h2 class="leto-developer__title">Надежный застройщик с историей</h2>
 				<p class="leto-developer__desc">Центр Малоэтажного Домостроения (ЦМД) - это команда профессионалов, которая строит качественное и доступное жилье с 2009 года. Мы отвечаем за каждый свой проект и дорожим репутацией.</p>
-				<a class="leto-developer__btn" href="<?php echo esc_url( home_url( '/o-kompanii/' ) ); ?>">Подробнее о застройщике</a>
+				<a class="leto-developer__btn" href="<?php echo esc_url( home_url( '/about/' ) ); ?>">Подробнее о застройщике</a>
 			</div>
 
 		</div>

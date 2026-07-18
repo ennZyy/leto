@@ -47,49 +47,25 @@ $leto_ecofarm_features = array(
 			</ul>
 
 			<div class="leto-ecofarm__form-wrapper">
+				<h3 class="leto-ecofarm__form-title">
+					<svg class="leto-ecofarm__form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+						<path d="M3 7h18l-1.5 13.5a1 1 0 0 1-1 .9H5.5a1 1 0 0 1-1-.9L3 7z"/>
+						<path d="M2 4h20l-1 3H3L2 4z"/>
+						<path d="M9 11v3M15 11v3"/>
+					</svg>
+					Подписка на «Фермерский ящик»
+				</h3>
+
 				<?php
-				$cf7_id = get_option( 'leto_ef_subscribe_form_id' );
-				if ( $cf7_id && function_exists( 'wpcf7' ) ) :
-					echo do_shortcode( '[contact-form-7 id="' . intval( $cf7_id ) . '"]' );
-				else :
+				// $cf7_id = (int) get_option( '2a5e7c5' );
+				// if ( $cf7_id && function_exists( 'wpcf7' ) ) :
+				// 	echo do_shortcode( '[contact-form-7 id="' . intval( $cf7_id ) . '"]' );
+				// elseif ( function_exists( 'wpcf7' ) ) :
+				// 	echo do_shortcode( '[contact-form-7 title="' . esc_attr__( 'Фермерский ящик (Экоферма)', 'leto-starter' ) . '"]' );
+				// endif;
+
+				echo do_shortcode( '[contact-form-7 id="2a5e7c5" title="Подписка на «Фермерский ящик»"]' );
 				?>
-				<form class="leto-ecofarm__form" action="#" method="post" novalidate>
-					<h3 class="leto-ecofarm__form-title">
-						<svg class="leto-ecofarm__form-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-							<path d="M3 7h18l-1.5 13.5a1 1 0 0 1-1 .9H5.5a1 1 0 0 1-1-.9L3 7z"/>
-							<path d="M2 4h20l-1 3H3L2 4z"/>
-							<path d="M9 11v3M15 11v3"/>
-						</svg>
-						Подписка на «Фермерский ящик»
-					</h3>
-
-					<div class="leto-ecofarm__field">
-						<input class="leto-ecofarm__input" type="text" name="name" placeholder="Ваше имя" autocomplete="name" required>
-					</div>
-
-					<div class="leto-ecofarm__field">
-						<input class="leto-ecofarm__input" type="tel" name="phone" placeholder="+7 (___) ___-__-__" inputmode="tel" autocomplete="tel" required>
-					</div>
-
-					<fieldset class="leto-ecofarm__fieldset">
-						<legend class="leto-ecofarm__legend">Периодичность</legend>
-						<div class="leto-ecofarm__radios">
-							<label class="leto-ecofarm__radio">
-								<input type="radio" name="period" value="week" checked>
-								<span class="leto-ecofarm__radio-mark" aria-hidden="true"></span>
-								<span class="leto-ecofarm__radio-label">Раз в неделю</span>
-							</label>
-							<label class="leto-ecofarm__radio">
-								<input type="radio" name="period" value="biweek">
-								<span class="leto-ecofarm__radio-mark" aria-hidden="true"></span>
-								<span class="leto-ecofarm__radio-label">Раз в 2 недели</span>
-							</label>
-						</div>
-					</fieldset>
-
-					<button class="leto-ecofarm__submit" type="submit">Подписаться</button>
-				</form>
-				<?php endif; ?>
 			</div>
 
 		</div>

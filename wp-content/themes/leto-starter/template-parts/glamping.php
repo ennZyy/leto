@@ -46,13 +46,13 @@ $leto_glamping_features = array(
 				<?php endforeach; ?>
 			</ul>
 
-			<a class="leto-glamping__btn" href="<?php echo esc_url( home_url( '/glamping/' ) ); ?>" target="_blank" rel="noopener noreferrer">
+			<button class="leto-glamping__btn" type="button" data-leto-modal-open="leto-tour-modal" data-leto-modal-href="<?php echo esc_url( home_url( '/glamping/' ) ); ?>">
 				<span>Забронировать домик</span>
 				<svg class="leto-glamping__btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
 					<path d="M7 17 17 7"/>
 					<path d="M7 7h10v10"/>
 				</svg>
-			</a>
+			</button>
 
 		</div>
 

@@ -23,12 +23,12 @@
 			<p class="leto-hero__subtitle">Собственное озеро, природа Нижегородской области и готовые участки для вашего дома - в 30 минутах от Нижнего Новгорода</p>
 			<div class="leto-hero__actions">
 				<a class="leto-hero__btn leto-hero__btn--primary" href="<?php echo esc_url( home_url( '/usloviya/' ) ); ?>">Выбрать участок</a>
-				<a class="leto-hero__btn leto-hero__btn--outline" href="<?php echo esc_url( home_url( '/kontakty/' ) ); ?>">
+				<button class="leto-hero__btn leto-hero__btn--outline" type="button" data-leto-modal-open="leto-tour-modal" data-leto-modal-href="<?php echo esc_url( home_url( '/kontakty/' ) ); ?>">
 					<svg class="leto-hero__btn-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor">
 						<path d="M8 5v14l11-7z"/>
 					</svg>
 					Записаться на экскурсию
-				</a>
+				</button>
 			</div>
 		</div>
 

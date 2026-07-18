@@ -17,6 +17,7 @@ $leto_queues = array(
 		'desc'  => 'Участки с подведенными коммуникациями, центральная часть поселка, вид на озеро',
 		'price' => 'от 80 000 ₽ за сотку',
 		'icon'  => 'home',
+		'image' => get_template_directory_uri() . '/assets/images/queue/2.png',
 	),
 	array(
 		'badge' => '2 очередь',
@@ -24,6 +25,7 @@ $leto_queues = array(
 		'desc'  => 'Просторные участки до 12 соток, лесная зона, тихий район',
 		'price' => '2-3 секторы: от 45 000 ₽ за сотку',
 		'icon'  => 'tree',
+		'image' => get_template_directory_uri() . '/assets/images/queue/4.png',
 	),
 	array(
 		'badge' => '3 очередь',
@@ -31,6 +33,7 @@ $leto_queues = array(
 		'desc'  => 'Компактные участки в историческом месте, рядом с храмом и родником',
 		'price' => 'от 55 000 ₽ за сотку',
 		'icon'  => 'building',
+		'image' => get_template_directory_uri() . '/assets/images/queue/5.png',
 	),
 	array(
 		'badge' => '4 очередь',
@@ -38,6 +41,7 @@ $leto_queues = array(
 		'desc'  => 'Инвестиционные участки под сдачу в аренду, высокая доходность',
 		'price' => 'от 100 000 ₽ за сотку',
 		'icon'  => 'chart',
+		'image' => get_template_directory_uri() . '/assets/images/queue/6.png',
 	),
 );
 ?>
@@ -53,6 +57,7 @@ $leto_queues = array(
 			<?php foreach ( $leto_queues as $queue ) : ?>
 				<article class="leto-queue-card">
 					<div class="leto-queue-card__image">
+						<img class="leto-queue-card__img" src="<?php echo esc_url( $queue['image'] ); ?>" alt="<?php echo esc_attr( $queue['title'] ); ?>" loading="lazy">
 						<span class="leto-queue-card__badge"><?php echo esc_html( $queue['badge'] ); ?></span>
 					</div>
 					<div class="leto-queue-card__body">

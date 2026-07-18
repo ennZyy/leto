@@ -180,12 +180,14 @@ a:focus {
 }
 
 .leto-primary-nav a {
+	display: block;
 	color: var(--leto-color-muted, #50575e);
 	font-size: 0.9375rem;
 	font-weight: 400;
 	text-decoration: none;
 	transition: color 0.2s ease;
 	padding-block: 0.5rem;
+	width: max-content;
 }
 
 .leto-primary-nav a:hover,
@@ -911,6 +913,16 @@ a:focus {
 	background: linear-gradient(135deg, #2D5F3F 0%, #0E3D2E 100%);
 	background-size: cover;
 	background-position: center;
+	overflow: hidden;
+}
+
+.leto-queue-card__img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
 }
 
 .leto-queue-card__image::after {
@@ -1348,10 +1360,10 @@ a:focus {
 	color: var(--leto-color-primary, #0E3D2E);
 }
 
-.leto-ecofarm__form {
+.leto-ecofarm__form-wrapper {
 	max-width: 32rem;
 	background-color: #ffffff;
-	border: 1px solid #1d2327;
+	border: 1px solid var(--leto-color-border, #d9e2dd);
 	border-radius: 1rem;
 	padding: 1.75rem;
 }
@@ -1374,55 +1386,45 @@ a:focus {
 	color: var(--leto-color-primary, #0E3D2E);
 }
 
-.leto-ecofarm__field {
-	margin-bottom: 0.75rem;
+.leto-ecofarm__form-wrapper .wpcf7-form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.875rem;
 }
 
-.leto-ecofarm__input {
+.leto-ecofarm__form-wrapper .wpcf7-form label {
 	display: block;
+	font-size: 0.9375rem;
+	font-weight: 500;
+	color: var(--leto-color-primary, #0E3D2E);
+}
+
+.leto-ecofarm__form-wrapper .wpcf7-form-control:not(.wpcf7-submit):not(.wpcf7-radio) {
 	width: 100%;
 	padding: 0.875rem 1.125rem;
-	background-color: #1d2327;
-	border: 1px solid #1d2327;
+	background-color: #fff;
+	border: 1px solid var(--leto-color-border, #d9e2dd);
 	border-radius: 0.5rem;
-	color: #ffffff;
+	color: #1d2327;
 	font-size: 0.9375rem;
 	line-height: 1.4;
-	transition: border-color 0.2s ease;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.leto-ecofarm__input::placeholder {
-	color: rgba(255, 255, 255, 0.55);
-}
-
-.leto-ecofarm__input:focus {
+.leto-ecofarm__form-wrapper .wpcf7-form-control:focus {
 	outline: none;
 	border-color: var(--leto-color-primary, #0E3D2E);
+	box-shadow: 0 0 0 3px rgba(14, 61, 46, 0.12);
 }
 
-.leto-ecofarm__fieldset {
-	border: 0;
-	margin: 1rem 0 0;
-	padding: 0;
-	min-width: 0;
-}
-
-.leto-ecofarm__legend {
-	display: block;
-	margin: 0 0 0.75rem;
-	padding: 0;
-	color: rgba(29, 35, 39, 0.55);
-	font-size: 0.8125rem;
-	line-height: 1.4;
-}
-
-.leto-ecofarm__radios {
+.leto-ecofarm__form-wrapper .wpcf7-radio {
 	display: flex;
 	gap: 2rem;
 	flex-wrap: wrap;
+	margin: 0.25rem 0 0.5rem;
 }
 
-.leto-ecofarm__radio {
+.leto-ecofarm__form-wrapper .wpcf7-radio label {
 	position: relative;
 	display: inline-flex;
 	align-items: center;
@@ -1430,54 +1432,38 @@ a:focus {
 	cursor: pointer;
 	color: #1d2327;
 	font-size: 0.9375rem;
-	line-height: 1.4;
+	font-weight: 400;
 	user-select: none;
 }
 
-.leto-ecofarm__radio input {
-	position: absolute;
-	opacity: 0;
-	width: 1px;
-	height: 1px;
-	pointer-events: none;
-}
-
-.leto-ecofarm__radio-mark {
-	position: relative;
+.leto-ecofarm__form-wrapper .wpcf7-radio input[type="radio"] {
+	appearance: none;
+	-webkit-appearance: none;
 	width: 1.125rem;
 	height: 1.125rem;
+	margin: 0;
 	border: 1.5px solid #1d2327;
 	border-radius: 50%;
 	flex-shrink: 0;
 	background-color: transparent;
+	transition: border-color 0.2s ease;
 }
 
-.leto-ecofarm__radio-mark::after {
-	content: '';
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 0.5rem;
-	height: 0.5rem;
-	background-color: var(--leto-color-ecofarm-radio, #5BB6FF);
-	border-radius: 50%;
-	transform: translate(-50%, -50%) scale(0);
-	transition: transform 0.2s ease;
+.leto-ecofarm__form-wrapper .wpcf7-radio input[type="radio"]:checked {
+	border-color: var(--leto-color-primary, #0E3D2E);
+	background-image: radial-gradient(circle, var(--leto-color-ecofarm-radio, #5BB6FF) 0 0.3rem, transparent 0.35rem);
+	background-position: center;
+	background-size: 100% 100%;
 }
 
-.leto-ecofarm__radio input:checked + .leto-ecofarm__radio-mark::after {
-	transform: translate(-50%, -50%) scale(1);
-}
-
-.leto-ecofarm__radio input:focus-visible + .leto-ecofarm__radio-mark {
+.leto-ecofarm__form-wrapper .wpcf7-radio input[type="radio"]:focus-visible {
 	outline: 2px solid var(--leto-color-primary, #0E3D2E);
 	outline-offset: 2px;
 }
 
-.leto-ecofarm__submit {
-	display: block;
+.leto-ecofarm__form-wrapper .wpcf7-submit {
 	width: 100%;
-	margin-top: 1.5rem;
+	margin-top: 0.5rem;
 	padding: 1rem 1.5rem;
 	background-color: var(--leto-color-primary, #0E3D2E);
 	color: #ffffff;
@@ -1489,9 +1475,21 @@ a:focus {
 	transition: background-color 0.2s ease;
 }
 
-.leto-ecofarm__submit:hover,
-.leto-ecofarm__submit:focus {
+.leto-ecofarm__form-wrapper .wpcf7-submit:hover,
+.leto-ecofarm__form-wrapper .wpcf7-submit:focus {
 	background-color: #0a2e22;
+	outline: none;
+}
+
+.leto-ecofarm__form-wrapper .wpcf7-not-valid-tip {
+	margin-top: 0.25rem;
+	font-size: 0.8125rem;
+}
+
+.leto-ecofarm__form-wrapper .wpcf7-response-output {
+	margin: 0.75rem 0 0;
+	border-radius: 0.5rem;
+	font-size: 0.9375rem;
 }
 
 .leto-ecofarm__media {

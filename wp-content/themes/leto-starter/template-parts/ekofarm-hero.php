@@ -29,7 +29,7 @@
 		<div class="leto-ef-hero__media">
 			<img
 				class="leto-ef-hero__image"
-				src="https://images.unsplash.com/photo-1505576399279-0d754f0d5a34?w=800&q=80"
+				src="<?php echo get_template_directory_uri() . '/assets/images/ferma.png' ?>"
 				alt="Фермерские продукты: молоко, сыр, творог, яйца"
 				width="800"
 				height="600"
