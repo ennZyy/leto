@@ -1,0 +1,30 @@
+[11-Jul-2026 17:23:24 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in C:\OSPanel5\domains\leto\wp-includes\functions.php on line 6383
+[11-Jul-2026 17:23:24 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in C:\OSPanel5\domains\leto\wp-includes\functions.php on line 6383
+[11-Jul-2026 17:23:24 UTC] WordPress database error Duplicate entry '1' for key 'wp_terms.PRIMARY' for query INSERT INTO `wp_terms` (`term_id`, `name`, `slug`, `term_group`) VALUES (1, 'Без рубрики', '%d0%b1%d0%b5%d0%b7-%d1%80%d1%83%d0%b1%d1%80%d0%b8%d0%ba%d0%b8', 0) made by wp_install, wp_install_defaults
+[11-Jul-2026 17:23:24 UTC] WordPress database error Duplicate entry '1-category' for key 'wp_term_taxonomy.term_id_taxonomy' for query INSERT INTO `wp_term_taxonomy` (`term_id`, `taxonomy`, `description`, `parent`, `count`) VALUES (1, 'category', '', 0, 1) made by wp_install, wp_install_defaults
+[11-Jul-2026 19:09:06 UTC] Automatic updates starting...
+[11-Jul-2026 19:09:07 UTC] Automatic updates complete.
+[12-Jul-2026 10:26:10 UTC] Automatic updates starting...
+[12-Jul-2026 10:26:11 UTC] Automatic updates complete.
+[16-Jul-2026 23:16:50 UTC] Automatic updates starting...
+[16-Jul-2026 23:16:51 UTC] Automatic updates complete.
+[17-Jul-2026 02:00:30 UTC] Automatic updates starting...
+[17-Jul-2026 02:00:31 UTC] Automatic updates complete.
+[17-Jul-2026 17:33:34 UTC] Automatic updates starting...
+[17-Jul-2026 17:33:35 UTC] Automatic updates complete.
+[17-Jul-2026 18:04:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function leto_starter_register_tour_cf7_id_test() in Command line code:1
+Stack trace:
+#0 {main}
+  thrown in Command line code on line 1
+[17-Jul-2026 18:05:25 UTC] PHP Warning:  Undefined array key "SERVER_NAME" in C:\OSPanel5\domains\leto\wp-includes\general-template.php on line 3889
+[17-Jul-2026 18:05:25 UTC] PHP Warning:  Undefined array key "SERVER_NAME" in C:\OSPanel5\domains\leto\wp-includes\general-template.php on line 3889
+[17-Jul-2026 18:34:03 UTC] Automatic updates starting...
+[17-Jul-2026 18:34:03 UTC] Automatic updates complete.
+[17-Jul-2026 18:58:27 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\OSPanel5\domains\leto\check_cf7b.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\OSPanel5\domains\leto\check_cf7b.php on line 7
+[17-Jul-2026 18:58:59 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in C:\OSPanel5\domains\leto\check_cf7b.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\OSPanel5\domains\leto\check_cf7b.php on line 7

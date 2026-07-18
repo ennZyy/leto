@@ -1,0 +1,4151 @@
+/*
+Theme Name: Leto Starter
+Theme URI: https://example.com/leto-starter
+Author: Leto
+Author URI: https://example.com
+Description: A minimal, clean starter theme for custom WordPress development. Use it as a foundation for your own theme.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 7.0
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: leto-starter
+Tags: custom-menu, featured-images, threaded-comments, translation-ready, block-styles, wide-blocks
+*/
+
+/*--------------------------------------------------------------
+# Variables
+--------------------------------------------------------------*/
+:root {
+	--leto-color-primary: #0E3D2E;
+	--leto-color-link: var(--leto-color-primary);
+	--leto-color-link-hover: #0a2e22;
+	--leto-font-logo: 'Pacifico', 'Brush Script MT', 'Comic Sans MS', cursive;
+	--leto-color-surface: #ffffff;
+	--leto-color-muted: #5b6b64;
+	--leto-color-border: #d9e2dd;
+	--leto-radius: 16px;
+	--leto-shadow-modal: 0 24px 60px rgba(14, 61, 46, 0.28);
+}
+
+/*--------------------------------------------------------------
+# Reset & base
+--------------------------------------------------------------*/
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	font-family: var(--leto-font-base, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif);
+	font-size: 1rem;
+	line-height: 1.6;
+	color: var(--leto-color-text, #1d2327);
+	background-color: var(--leto-color-bg, #f6f7f7);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+	color: inherit;
+}
+
+a {
+	color: var(--leto-color-link, #0E3D2E);
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+a:hover,
+a:focus {
+	color: var(--leto-color-link-hover, #0a2e22);
+	text-decoration: underline;
+}
+
+/*--------------------------------------------------------------
+# Layout
+--------------------------------------------------------------*/
+.leto-container {
+	width: 100%;
+	max-width: 72rem;
+	margin-inline: auto;
+	padding-inline: 1.5rem;
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+.leto-site-header {
+	position: relative;
+	padding-block: 1.25rem;
+	background-color: #ffffff;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.leto-header-inner {
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+}
+
+/* Brand group: logo + divider + tagline */
+.leto-header-brand {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	flex-shrink: 0;
+}
+
+.leto-header-logo {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	text-decoration: none;
+	color: inherit;
+	flex-shrink: 0;
+}
+
+.leto-header-logo__icon {
+	width: 52px;
+	height: 52px;
+	display: block;
+}
+
+.leto-header-logo__text {
+	font-family: var(--leto-font-logo, 'Pacifico', cursive);
+	font-size: 1.75rem;
+	color: #2D5F3F;
+	line-height: 1;
+	font-weight: 400;
+	transition: color 0.2s ease;
+}
+
+.leto-header-logo:hover .leto-header-logo__text,
+.leto-header-logo:focus .leto-header-logo__text {
+	color: #1B4D2E;
+}
+
+.leto-header-divider {
+	width: 1px;
+	height: 32px;
+	background-color: var(--leto-color-border, #dcdcde);
+	flex-shrink: 0;
+}
+
+.leto-header-tagline {
+	font-size: 0.875rem;
+	color: var(--leto-color-muted, #50575e);
+	white-space: nowrap;
+	line-height: 1.3;
+}
+
+/* Primary navigation */
+.leto-primary-nav {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+}
+
+.leto-primary-nav > ul,
+.leto-primary-nav .menu {
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.leto-primary-nav a {
+	color: var(--leto-color-muted, #50575e);
+	font-size: 0.9375rem;
+	font-weight: 400;
+	text-decoration: none;
+	transition: color 0.2s ease;
+	padding-block: 0.5rem;
+}
+
+.leto-primary-nav a:hover,
+.leto-primary-nav a:focus,
+.leto-primary-nav .current-menu-item > a,
+.leto-primary-nav .current_page_item > a {
+	color: var(--leto-color-primary, #0E3D2E);
+	text-decoration: none;
+}
+
+/* Phone icon */
+.leto-header-phone {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.5rem;
+	height: 2.5rem;
+	color: var(--leto-color-muted, #50575e);
+	text-decoration: none;
+	transition: color 0.2s ease;
+	flex-shrink: 0;
+	border-radius: 50%;
+}
+
+.leto-header-phone:hover,
+.leto-header-phone:focus {
+	color: var(--leto-color-primary, #0E3D2E);
+	text-decoration: none;
+}
+
+.leto-header-phone .leto-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+.leto-header-phone-number {
+	display: inline-flex;
+	align-items: center;
+	color: var(--leto-color-primary, #0E3D2E);
+	font-weight: 600;
+	font-size: 0.9375rem;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.leto-header-phone-number:hover,
+.leto-header-phone-number:focus {
+	color: var(--leto-color-link-hover, #0a2e22);
+	text-decoration: none;
+}
+
+/* CTA button */
+.leto-header-cta {
+	display: inline-block;
+	padding: 0.75rem 1.5rem;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	font-size: 0.9375rem;
+	font-weight: 600;
+	text-decoration: none;
+	border-radius: 0.5rem;
+	transition: background-color 0.2s ease;
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+.leto-header-cta:hover,
+.leto-header-cta:focus {
+	background-color: var(--leto-color-link-hover, #0a2e22);
+	color: #ffffff;
+	text-decoration: none;
+}
+
+/* Mobile menu toggle */
+.leto-menu-toggle {
+	display: none;
+	background: none;
+	border: none;
+	padding: 0.5rem;
+	cursor: pointer;
+	color: var(--leto-color-muted, #50575e);
+}
+
+.leto-menu-toggle__icon,
+.leto-menu-toggle__icon::before,
+.leto-menu-toggle__icon::after {
+	display: block;
+	width: 24px;
+	height: 2px;
+	background-color: currentColor;
+	transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.leto-menu-toggle__icon {
+	position: relative;
+}
+
+.leto-menu-toggle__icon::before,
+.leto-menu-toggle__icon::after {
+	content: '';
+	position: absolute;
+	left: 0;
+}
+
+.leto-menu-toggle__icon::before {
+	top: -7px;
+}
+
+.leto-menu-toggle__icon::after {
+	top: 7px;
+}
+
+.leto-menu-toggle[aria-expanded="true"] .leto-menu-toggle__icon {
+	background-color: transparent;
+}
+
+.leto-menu-toggle[aria-expanded="true"] .leto-menu-toggle__icon::before {
+	top: 0;
+	transform: rotate(45deg);
+}
+
+.leto-menu-toggle[aria-expanded="true"] .leto-menu-toggle__icon::after {
+	top: 0;
+	transform: rotate(-45deg);
+}
+
+/* Responsive */
+@media (max-width: 1023px) {
+	.leto-header-tagline,
+	.leto-header-divider {
+		display: none;
+	}
+	.leto-header-inner {
+		gap: 1.5rem;
+	}
+	.leto-primary-nav > ul,
+	.leto-primary-nav .menu {
+		gap: 1.25rem;
+	}
+}
+
+@media (max-width: 767px) {
+	.leto-menu-toggle {
+		display: block;
+		order: 99;
+	}
+	.leto-primary-nav {
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background-color: #ffffff;
+		padding: 1rem 1.5rem;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+		z-index: 100;
+	}
+	.leto-primary-nav.is-open {
+		display: block;
+	}
+	.leto-primary-nav > ul,
+	.leto-primary-nav .menu {
+		flex-direction: column;
+		gap: 0.5rem;
+		align-items: flex-start;
+	}
+	.leto-primary-nav a {
+		display: block;
+		padding: 0.75rem 0;
+	}
+	.leto-header-cta {
+		padding: 0.625rem 1.25rem;
+		font-size: 0.875rem;
+	}
+	.leto-header-inner {
+		gap: 1rem;
+	}
+	.leto-header-phone-number {
+		display: none;
+	}
+}
+
+/*--------------------------------------------------------------
+# Footer (dark green, brand)
+--------------------------------------------------------------*/
+.leto-site-footer {
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	margin-top: 4rem;
+	padding: clamp(4rem, 8vw, 7rem) 0 0;
+}
+
+.leto-footer-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 2.5rem;
+	padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+@media (min-width: 40rem) {
+	.leto-footer-grid {
+		grid-template-columns: 1fr 1fr;
+	}
+	.leto-footer-brand {
+		grid-column: 1;
+		grid-row: 1 / span 3;
+	}
+}
+
+@media (min-width: 64rem) {
+	.leto-footer-grid {
+		grid-template-columns: 2fr 1fr 1fr 1fr;
+	}
+	.leto-footer-brand {
+		grid-row: auto;
+	}
+}
+
+.leto-footer-brand {
+	max-width: 30rem;
+}
+
+.leto-footer-logo {
+	display: inline-block;
+	font-family: var(--leto-font-logo, 'Pacifico', cursive);
+	font-size: clamp(3rem, 6vw, 4.5rem);
+	font-weight: 400;
+	line-height: 1;
+	color: #ffffff;
+	text-decoration: none;
+	margin: 0 0 1.5rem;
+	transition: opacity 0.2s ease;
+}
+
+.leto-footer-logo:hover,
+.leto-footer-logo:focus {
+	color: #ffffff;
+	text-decoration: none;
+	opacity: 0.9;
+}
+
+.leto-footer-description {
+	margin: 0 0 1.75rem;
+	font-size: 0.9375rem;
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.88);
+}
+
+.leto-footer-contacts {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.85rem;
+}
+
+.leto-footer-contact {
+	display: flex;
+	align-items: center;
+	gap: 0.65rem;
+	font-size: 0.9375rem;
+	line-height: 1.5;
+	color: #ffffff;
+}
+
+.leto-footer-contact--address {
+	align-items: flex-start;
+}
+
+.leto-footer-contact__link {
+	color: #ffffff;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.5rem;
+	height: 1.5rem;
+	transition: opacity 0.2s ease;
+}
+
+.leto-footer-contact__link:hover,
+.leto-footer-contact__link:focus {
+	color: #ffffff;
+	opacity: 0.8;
+	text-decoration: none;
+}
+
+.leto-footer-contact__text {
+	color: #ffffff;
+	text-decoration: none;
+	min-width: 0;
+}
+
+.leto-footer-contact__text:hover,
+.leto-footer-contact__text:focus {
+	color: #ffffff;
+	text-decoration: underline;
+}
+
+.leto-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+	flex-shrink: 0;
+	stroke: currentColor;
+}
+
+.leto-footer-nav__title {
+	margin: 0 0 1.25rem;
+	font-size: 1.0625rem;
+	font-weight: 700;
+	color: #ffffff;
+	letter-spacing: 0.01em;
+}
+
+.leto-footer-menu,
+.leto-footer-nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.85rem;
+}
+
+.leto-footer-menu a,
+.leto-footer-nav a {
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 0.9375rem;
+	line-height: 1.5;
+	transition: opacity 0.2s ease;
+}
+
+.leto-footer-menu a:hover,
+.leto-footer-menu a:focus,
+.leto-footer-nav a:hover,
+.leto-footer-nav a:focus {
+	color: #ffffff;
+	text-decoration: underline;
+	opacity: 0.9;
+}
+
+.leto-footer-bottom {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: 1.75rem 0 2.25rem;
+	margin-top: 1rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.22);
+	font-size: 0.8125rem;
+	color: rgba(255, 255, 255, 0.88);
+}
+
+@media (min-width: 48rem) {
+	.leto-footer-bottom {
+		flex-direction: row;
+		align-items: center;
+		gap: 1.5rem;
+	}
+}
+
+.leto-footer-copy,
+.leto-footer-developer {
+	margin: 0;
+}
+
+.leto-main {
+	padding-block: 2.5rem;
+}
+
+.leto-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 2.5rem;
+}
+
+@media (min-width: 64rem) {
+	.leto-layout--with-sidebar {
+		grid-template-columns: minmax(0, 1fr) 18rem;
+	}
+}
+
+.leto-content {
+	min-width: 0;
+}
+
+.leto-sidebar {
+	min-width: 0;
+}
+
+.leto-entry {
+	background-color: var(--leto-color-surface, #ffffff);
+	border: 1px solid var(--leto-color-border, #dcdcde);
+	border-radius: 0.5rem;
+	padding: 1.75rem;
+	margin-block-end: 1.5rem;
+}
+
+.leto-entry__title {
+	margin: 0 0 0.5rem;
+	font-size: 1.625rem;
+	line-height: 1.3;
+}
+
+.leto-entry__title a {
+	color: inherit;
+}
+
+.leto-entry__meta {
+	margin: 0 0 1rem;
+	font-size: 0.875rem;
+	color: var(--leto-color-muted, #50575e);
+}
+
+.leto-entry__meta > * + *::before {
+	content: "·";
+	margin-inline: 0.5rem;
+}
+
+.leto-entry__thumbnail {
+	margin: -1.75rem -1.75rem 1.5rem;
+	border-top-left-radius: 0.5rem;
+	border-top-right-radius: 0.5rem;
+	overflow: hidden;
+}
+
+.leto-entry__footer {
+	margin-top: 1.25rem;
+}
+
+.leto-read-more {
+	display: inline-block;
+	font-weight: 600;
+}
+
+.leto-page-header {
+	margin-block-end: 1.75rem;
+}
+
+.leto-page-header h1,
+.leto-page-header .page-title {
+	margin: 0;
+	font-size: 1.875rem;
+}
+
+.leto-taxonomy-description {
+	margin: 0.5rem 0 0;
+	color: var(--leto-color-muted, #50575e);
+}
+
+.leto-pagination {
+	margin-block-start: 1.5rem;
+}
+
+.leto-pagination .nav-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.leto-pagination .page-numbers {
+	display: inline-block;
+	padding: 0.5rem 0.875rem;
+	border: 1px solid var(--leto-color-border, #dcdcde);
+	border-radius: 0.375rem;
+	background-color: var(--leto-color-surface, #ffffff);
+	color: inherit;
+	text-decoration: none;
+}
+
+.leto-pagination .page-numbers.current {
+	background-color: var(--leto-color-link, #2271b1);
+	border-color: var(--leto-color-link, #2271b1);
+	color: #fff;
+}
+
+.leto-screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(50%);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.leto-screen-reader-text:focus {
+	background-color: #f6f7f7;
+	border-radius: 0.25rem;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	-webkit-clip-path: none;
+	clip-path: none;
+	color: #2271b1;
+	display: block;
+	font-size: 0.875rem;
+	font-weight: 700;
+	height: auto;
+	left: 0.5rem;
+	line-height: normal;
+	padding: 0.75rem 1.5rem;
+	top: 0.5rem;
+	width: auto;
+	z-index: 100000;
+}
+
+.leto-no-results {
+	background-color: var(--leto-color-surface, #ffffff);
+	border: 1px solid var(--leto-color-border, #dcdcde);
+	border-radius: 0.5rem;
+	padding: 2rem;
+	text-align: center;
+}
+
+/*--------------------------------------------------------------
+# Hero (first screen)
+--------------------------------------------------------------*/
+.leto-hero {
+	min-height: 80vh;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	display: flex;
+	align-items: center;
+}
+
+.leto-hero__inner {
+	display: grid;
+	grid-template-columns: 1fr 1.5fr;
+	gap: 3rem;
+	align-items: center;
+	padding-block: 4rem;
+	width: 100%;
+}
+
+.leto-hero__video-placeholder {
+	background-color: rgba(0, 0, 0, 0.15);
+	border: 2px dashed rgba(255, 255, 255, 0.2);
+	border-radius: 0.5rem;
+	aspect-ratio: 16 / 9;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 1.25rem;
+}
+
+.leto-hero__video-label {
+	user-select: none;
+}
+
+.leto-hero__text {
+	text-align: right;
+}
+
+.leto-hero__title {
+	margin: 0 0 1.5rem;
+	font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+	font-weight: 700;
+	line-height: 1.1;
+	color: #ffffff;
+}
+
+.leto-hero__subtitle {
+	margin: 0 0 2.5rem;
+	font-size: clamp(0.9375rem, 1.3vw, 1.125rem);
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.85);
+	max-width: 35rem;
+	margin-inline-start: auto;
+}
+
+.leto-hero__actions {
+	display: flex;
+	gap: 1rem;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+}
+
+.leto-hero__btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.875rem 1.75rem;
+	border-radius: 0.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.leto-hero__btn--primary {
+	background-color: #ffffff;
+	color: var(--leto-color-primary, #0E3D2E);
+}
+
+.leto-hero__btn--primary:hover,
+.leto-hero__btn--primary:focus {
+	background-color: #f0f0f0;
+	color: var(--leto-color-primary, #0E3D2E);
+	text-decoration: none;
+}
+
+.leto-hero__btn--outline {
+	background-color: transparent;
+	border: 1.5px solid #ffffff;
+	color: #ffffff;
+}
+
+.leto-hero__btn--outline:hover,
+.leto-hero__btn--outline:focus {
+	background-color: rgba(255, 255, 255, 0.1);
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.leto-hero__btn-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+	flex-shrink: 0;
+}
+
+.leto-front-content {
+	padding-block: 3rem;
+}
+
+@media (max-width: 767px) {
+	.leto-hero__inner {
+		grid-template-columns: 1fr;
+		gap: 2rem;
+	}
+	.leto-hero__text {
+		text-align: center;
+	}
+	.leto-hero__subtitle {
+		margin-inline: auto;
+	}
+	.leto-hero__actions {
+		justify-content: center;
+	}
+}
+
+/*--------------------------------------------------------------
+# Queues and plots
+--------------------------------------------------------------*/
+:root {
+	--leto-color-queues-bg: #F5EFD9;
+	--leto-color-queues-text: #4b5563;
+	--leto-color-queues-price: #1d2327;
+}
+
+.leto-queues {
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-queues__header {
+	text-align: center;
+	margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.leto-queues__title {
+	margin: 0 0 1rem;
+	font-size: clamp(2rem, 4vw, 3rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-queues__subtitle {
+	margin: 0 auto;
+	max-width: 42rem;
+	color: var(--leto-color-queues-text, #4b5563);
+	font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-queues__grid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 1.5rem;
+	align-items: stretch;
+}
+
+@media (max-width: 1023px) {
+	.leto-queues__grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 575px) {
+	.leto-queues__grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.leto-queue-card {
+	display: flex;
+	flex-direction: column;
+	background-color: #ffffff;
+	border-radius: 1rem;
+	overflow: hidden;
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.leto-queue-card:hover,
+.leto-queue-card:focus-within {
+	transform: translateY(-2px);
+	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.leto-queue-card__image {
+	position: relative;
+	aspect-ratio: 4 / 3;
+	background: linear-gradient(135deg, #2D5F3F 0%, #0E3D2E 100%);
+	background-size: cover;
+	background-position: center;
+}
+
+.leto-queue-card__image::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.25) 100%);
+	pointer-events: none;
+}
+
+.leto-queue-card__badge {
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	z-index: 1;
+	display: inline-block;
+	padding: 0.4rem 0.9rem;
+	background-color: #ffffff;
+	color: #1d2327;
+	font-size: 0.8125rem;
+	font-weight: 500;
+	line-height: 1;
+	border-radius: 999px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.leto-queue-card__body {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: 1.25rem 1.25rem 1.5rem;
+	flex: 1;
+}
+
+.leto-queue-card__title {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0;
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.3;
+}
+
+.leto-queue-card__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	color: var(--leto-color-primary, #0E3D2E);
+}
+
+.leto-queue-card__icon svg {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+.leto-queue-card__title-text {
+	min-width: 0;
+}
+
+.leto-queue-card__desc {
+	margin: 0;
+	color: var(--leto-color-queues-text, #4b5563);
+	font-size: 0.8125rem;
+	line-height: 1.5;
+}
+
+.leto-queue-card__price {
+	margin: 0;
+	font-size: 0.8125rem;
+	font-weight: 700;
+	color: var(--leto-color-queues-price, #1d2327);
+}
+
+/*--------------------------------------------------------------
+# Lake section (own lake)
+--------------------------------------------------------------*/
+:root {
+	--leto-color-lake-eyebrow: #5BB6FF;
+}
+
+.leto-lake {
+	position: relative;
+	min-height: clamp(560px, 90vh, 900px);
+	background-image: url('assets/images/lake-bg.jpg');
+	background-size: cover;
+	background-position: center;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+}
+
+.leto-lake__overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		90deg,
+		rgba(14, 61, 46, 0.95) 0%,
+		rgba(14, 61, 46, 0.85) 25%,
+		rgba(14, 61, 46, 0.55) 50%,
+		rgba(14, 61, 46, 0.2) 80%,
+		rgba(14, 61, 46, 0) 100%
+	);
+	pointer-events: none;
+	z-index: 1;
+}
+
+.leto-lake__inner {
+	position: relative;
+	z-index: 2;
+	padding-block: clamp(4rem, 8vw, 7rem);
+	width: 100%;
+}
+
+.leto-lake__content {
+	max-width: 36rem;
+}
+
+.leto-lake__eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0 0 1.5rem;
+	color: var(--leto-color-lake-eyebrow, #5BB6FF);
+	font-size: 0.875rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	line-height: 1;
+}
+
+.leto-lake__eyebrow-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+	flex-shrink: 0;
+}
+
+.leto-lake__title {
+	margin: 0 0 1.5rem;
+	font-size: clamp(2.25rem, 5vw, 4rem);
+	font-weight: 700;
+	line-height: 1.05;
+	color: #ffffff;
+}
+
+.leto-lake__desc {
+	margin: 0 0 3rem;
+	max-width: 34rem;
+	color: rgba(255, 255, 255, 0.88);
+	font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-lake__stats {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, max-content));
+	gap: clamp(1.5rem, 4vw, 3.5rem);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.leto-lake__stat {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+}
+
+.leto-lake__stat-value {
+	font-size: clamp(1.5rem, 3vw, 2.25rem);
+	font-weight: 700;
+	color: #ffffff;
+	line-height: 1.1;
+}
+
+.leto-lake__stat-label {
+	font-size: 0.875rem;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+@media (max-width: 575px) {
+	.leto-lake__stats {
+		grid-template-columns: 1fr;
+		gap: 1.25rem;
+	}
+}
+
+/*--------------------------------------------------------------
+# Glamping section
+--------------------------------------------------------------*/
+.leto-glamping {
+	background-color: #ffffff;
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-glamping__inner {
+	display: grid;
+	grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+	gap: clamp(2rem, 5vw, 4.5rem);
+	align-items: center;
+}
+
+@media (max-width: 767px) {
+	.leto-glamping__inner {
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+	}
+}
+
+.leto-glamping__media {
+	position: relative;
+}
+
+.leto-glamping__image {
+	position: relative;
+	aspect-ratio: 4 / 5;
+	border-radius: 1rem;
+	background-image: url('assets/images/glamping-bg.jpg');
+	background-size: cover;
+	background-position: center;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	overflow: hidden;
+}
+
+.leto-glamping__image::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.15) 100%);
+	pointer-events: none;
+}
+
+.leto-glamping__badge {
+	position: absolute;
+	right: 1.25rem;
+	bottom: 1.25rem;
+	z-index: 1;
+	display: inline-block;
+	padding: 0.85rem 1.25rem;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	font-size: 0.9375rem;
+	font-weight: 500;
+	line-height: 1.2;
+	border-radius: 0.625rem;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.leto-glamping__content {
+	max-width: 32rem;
+}
+
+.leto-glamping__eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0 0 1.25rem;
+	color: var(--leto-color-primary, #0E3D2E);
+	font-size: 0.875rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	line-height: 1;
+}
+
+.leto-glamping__eyebrow-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+	flex-shrink: 0;
+}
+
+.leto-glamping__title {
+	margin: 0 0 1.25rem;
+	font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.1;
+}
+
+.leto-glamping__desc {
+	margin: 0 0 1.75rem;
+	color: #4b5563;
+	font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-glamping__list {
+	list-style: none;
+	margin: 0 0 2.25rem;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.leto-glamping__list-item {
+	position: relative;
+	padding-left: 1.5rem;
+	color: #1d2327;
+	font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+	line-height: 1.5;
+}
+
+.leto-glamping__list-item::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0.55em;
+	width: 0.5rem;
+	height: 0.5rem;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	border-radius: 50%;
+}
+
+.leto-glamping__btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 1rem 1.5rem;
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	color: var(--leto-color-primary, #0E3D2E);
+	font-size: 1rem;
+	font-weight: 600;
+	text-decoration: none;
+	border-radius: 0.625rem;
+	transition: background-color 0.2s ease;
+}
+
+.leto-glamping__btn:hover,
+.leto-glamping__btn:focus {
+	background-color: #ebe3c2;
+	color: var(--leto-color-primary, #0E3D2E);
+	text-decoration: none;
+}
+
+.leto-glamping__btn-icon {
+	width: 1.125rem;
+	height: 1.125rem;
+	flex-shrink: 0;
+}
+
+/*--------------------------------------------------------------
+# Ecofarm section
+--------------------------------------------------------------*/
+:root {
+	--leto-color-ecofarm-radio: #5BB6FF;
+}
+
+.leto-ecofarm {
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-ecofarm__inner {
+	display: grid;
+	grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+	gap: clamp(2rem, 5vw, 4rem);
+	align-items: start;
+}
+
+@media (max-width: 767px) {
+	.leto-ecofarm__inner {
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+	}
+}
+
+.leto-ecofarm__eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0 0 1.25rem;
+	color: var(--leto-color-primary, #0E3D2E);
+	font-size: 0.875rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	line-height: 1;
+}
+
+.leto-ecofarm__eyebrow-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+	flex-shrink: 0;
+}
+
+.leto-ecofarm__title {
+	margin: 0 0 1.25rem;
+	font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-ecofarm__desc {
+	margin: 0 0 2rem;
+	max-width: 32rem;
+	color: #4b5563;
+	font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-ecofarm__features {
+	list-style: none;
+	margin: 0 0 2.5rem;
+	padding: 0;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem 2rem;
+}
+
+@media (max-width: 575px) {
+	.leto-ecofarm__features {
+		grid-template-columns: 1fr;
+	}
+}
+
+.leto-ecofarm__feature {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	color: #1d2327;
+	font-size: clamp(0.875rem, 1.1vw, 1rem);
+	line-height: 1.4;
+}
+
+.leto-ecofarm__check {
+	width: 1.25rem;
+	height: 1.25rem;
+	flex-shrink: 0;
+	color: var(--leto-color-primary, #0E3D2E);
+}
+
+.leto-ecofarm__form {
+	max-width: 32rem;
+	background-color: #ffffff;
+	border: 1px solid #1d2327;
+	border-radius: 1rem;
+	padding: 1.75rem;
+}
+
+.leto-ecofarm__form-title {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0 0 1.25rem;
+	font-size: 1.125rem;
+	font-weight: 600;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.3;
+}
+
+.leto-ecofarm__form-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+	flex-shrink: 0;
+	color: var(--leto-color-primary, #0E3D2E);
+}
+
+.leto-ecofarm__field {
+	margin-bottom: 0.75rem;
+}
+
+.leto-ecofarm__input {
+	display: block;
+	width: 100%;
+	padding: 0.875rem 1.125rem;
+	background-color: #1d2327;
+	border: 1px solid #1d2327;
+	border-radius: 0.5rem;
+	color: #ffffff;
+	font-size: 0.9375rem;
+	line-height: 1.4;
+	transition: border-color 0.2s ease;
+}
+
+.leto-ecofarm__input::placeholder {
+	color: rgba(255, 255, 255, 0.55);
+}
+
+.leto-ecofarm__input:focus {
+	outline: none;
+	border-color: var(--leto-color-primary, #0E3D2E);
+}
+
+.leto-ecofarm__fieldset {
+	border: 0;
+	margin: 1rem 0 0;
+	padding: 0;
+	min-width: 0;
+}
+
+.leto-ecofarm__legend {
+	display: block;
+	margin: 0 0 0.75rem;
+	padding: 0;
+	color: rgba(29, 35, 39, 0.55);
+	font-size: 0.8125rem;
+	line-height: 1.4;
+}
+
+.leto-ecofarm__radios {
+	display: flex;
+	gap: 2rem;
+	flex-wrap: wrap;
+}
+
+.leto-ecofarm__radio {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	cursor: pointer;
+	color: #1d2327;
+	font-size: 0.9375rem;
+	line-height: 1.4;
+	user-select: none;
+}
+
+.leto-ecofarm__radio input {
+	position: absolute;
+	opacity: 0;
+	width: 1px;
+	height: 1px;
+	pointer-events: none;
+}
+
+.leto-ecofarm__radio-mark {
+	position: relative;
+	width: 1.125rem;
+	height: 1.125rem;
+	border: 1.5px solid #1d2327;
+	border-radius: 50%;
+	flex-shrink: 0;
+	background-color: transparent;
+}
+
+.leto-ecofarm__radio-mark::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0.5rem;
+	height: 0.5rem;
+	background-color: var(--leto-color-ecofarm-radio, #5BB6FF);
+	border-radius: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	transition: transform 0.2s ease;
+}
+
+.leto-ecofarm__radio input:checked + .leto-ecofarm__radio-mark::after {
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.leto-ecofarm__radio input:focus-visible + .leto-ecofarm__radio-mark {
+	outline: 2px solid var(--leto-color-primary, #0E3D2E);
+	outline-offset: 2px;
+}
+
+.leto-ecofarm__submit {
+	display: block;
+	width: 100%;
+	margin-top: 1.5rem;
+	padding: 1rem 1.5rem;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	font-size: 1rem;
+	font-weight: 600;
+	border: 0;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.leto-ecofarm__submit:hover,
+.leto-ecofarm__submit:focus {
+	background-color: #0a2e22;
+}
+
+.leto-ecofarm__media {
+	position: sticky;
+	top: 2rem;
+}
+
+@media (max-width: 767px) {
+	.leto-ecofarm__media {
+		position: static;
+		order: -1;
+	}
+}
+
+.leto-ecofarm__image {
+	aspect-ratio: 4 / 5;
+	border-radius: 1rem;
+	background-image: url('assets/images/ecofarm-bg.jpg');
+	background-size: cover;
+	background-position: center;
+	background-color: #fafafa;
+}
+
+/*--------------------------------------------------------------
+# Power places section
+--------------------------------------------------------------*/
+.leto-places {
+	background-color: #ffffff;
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-places__header {
+	text-align: center;
+	margin-bottom: clamp(2.5rem, 5vw, 4rem);
+	max-width: 48rem;
+	margin-inline: auto;
+}
+
+.leto-places__title {
+	margin: 0 0 1rem;
+	font-size: clamp(1.75rem, 3.8vw, 2.75rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-places__subtitle {
+	margin: 0 auto;
+	max-width: 42rem;
+	color: #4b5563;
+	font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-places__grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1.5rem;
+}
+
+@media (max-width: 1023px) {
+	.leto-places__grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 575px) {
+	.leto-places__grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.leto-place-card {
+	position: relative;
+	aspect-ratio: 4 / 3;
+	border-radius: 1rem;
+	overflow: hidden;
+	background-color: #1d2327;
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.leto-place-card:hover,
+.leto-place-card:focus-within {
+	transform: translateY(-2px);
+	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+}
+
+.leto-place-card__image {
+	position: absolute;
+	inset: 0;
+	background-size: cover;
+	background-position: center;
+	background-color: #1d2327;
+}
+
+.leto-place-card__image::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.55) 100%);
+	pointer-events: none;
+}
+
+.leto-place-card__number {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	z-index: 1;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2rem;
+	height: 2rem;
+	background-color: rgba(255, 255, 255, 0.85);
+	backdrop-filter: blur(6px);
+	color: #1d2327;
+	font-size: 0.875rem;
+	font-weight: 600;
+	border-radius: 50%;
+}
+
+.leto-place-card__overlay {
+	position: absolute;
+	left: 1.25rem;
+	right: 1.25rem;
+	bottom: 1.25rem;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	color: #ffffff;
+	font-size: clamp(1rem, 1.4vw, 1.25rem);
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.leto-place-card__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	color: #ffffff;
+}
+
+.leto-place-card__icon svg {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.leto-place-card__title {
+	min-width: 0;
+}
+
+/*--------------------------------------------------------------
+# Developer section
+--------------------------------------------------------------*/
+:root {
+	--leto-color-developer-link: #1E40AF;
+}
+
+.leto-developer {
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-developer__top {
+	display: grid;
+	grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+	gap: clamp(2rem, 5vw, 4.5rem);
+	align-items: center;
+	margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+@media (max-width: 767px) {
+	.leto-developer__top {
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+	}
+}
+
+.leto-developer__image {
+	position: relative;
+	aspect-ratio: 4 / 3;
+	border-radius: 1rem;
+	background-size: cover;
+	background-position: center;
+	background-color: #1d2327;
+	overflow: hidden;
+}
+
+.leto-developer__image::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.15) 100%);
+	pointer-events: none;
+}
+
+.leto-developer__badge {
+	position: absolute;
+	left: 1.25rem;
+	bottom: 1.25rem;
+	z-index: 1;
+	display: inline-block;
+	padding: 0.85rem 1.25rem;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	font-size: 0.9375rem;
+	font-weight: 500;
+	line-height: 1.2;
+	border-radius: 0.625rem;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.leto-developer__content {
+	max-width: 34rem;
+}
+
+.leto-developer__title {
+	margin: 0 0 1.5rem;
+	font-size: clamp(1.75rem, 3.8vw, 2.75rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-developer__desc {
+	margin: 0 0 2rem;
+	color: #4b5563;
+	font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-developer__btn {
+	display: inline-block;
+	padding: 0.875rem 1.75rem;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	font-size: 1rem;
+	font-weight: 600;
+	text-decoration: none;
+	border-radius: 0.5rem;
+	transition: background-color 0.2s ease;
+}
+
+.leto-developer__btn:hover,
+.leto-developer__btn:focus {
+	background-color: #0a2e22;
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.leto-developer__features {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1.5rem;
+}
+
+@media (max-width: 767px) {
+	.leto-developer__features {
+		grid-template-columns: 1fr;
+	}
+}
+
+.leto-developer-feature {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: 1.5rem;
+	background-color: #ffffff;
+	border: 1px solid #1d2327;
+	border-radius: 1rem;
+}
+
+.leto-developer-feature__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 3rem;
+	height: 3rem;
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	color: var(--leto-color-primary, #0E3D2E);
+	border-radius: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.leto-developer-feature__icon svg {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.leto-developer-feature__title {
+	margin: 0 0 0.25rem;
+	font-size: 1.0625rem;
+	font-weight: 700;
+	color: var(--leto-color-developer-link, #1E40AF);
+	line-height: 1.3;
+}
+
+.leto-developer-feature__desc {
+	margin: 0;
+	color: #4b5563;
+	font-size: 0.9375rem;
+	line-height: 1.5;
+}
+
+/*--------------------------------------------------------------
+# Testimonials section
+--------------------------------------------------------------*/
+.leto-testimonials {
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-testimonials__title {
+	margin: 0 0 clamp(2rem, 4vw, 3.5rem);
+	text-align: center;
+	font-size: clamp(1.75rem, 3.8vw, 2.5rem);
+	font-weight: 700;
+	color: #ffffff;
+	line-height: 1.15;
+}
+
+.leto-testimonials__carousel {
+	position: relative;
+	max-width: 64rem;
+	margin: 0 auto;
+	padding: clamp(2rem, 4vw, 3.5rem) clamp(2rem, 4vw, 3.5rem) clamp(5rem, 8vw, 7rem);
+	background-color: rgba(255, 255, 255, 0.05);
+	border-radius: 1.5rem;
+	overflow: hidden;
+}
+
+.leto-testimonials__track {
+	position: relative;
+	min-height: 16rem;
+}
+
+@media (min-width: 768px) {
+	.leto-testimonials__track {
+		min-height: 18rem;
+	}
+}
+
+.leto-testimonial-slide {
+	display: block;
+}
+
+.leto-testimonial-slide[hidden] {
+	display: none;
+}
+
+.leto-testimonial {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.leto-testimonial__content {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.leto-testimonial__quote {
+	width: 2.5rem;
+	height: 2.5rem;
+	color: rgba(255, 255, 255, 0.25);
+	flex-shrink: 0;
+}
+
+.leto-testimonial__text {
+	margin: 0;
+	font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+	line-height: 1.5;
+	color: rgba(255, 255, 255, 0.92);
+	font-weight: 400;
+	font-style: normal;
+}
+
+.leto-testimonial__author {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.leto-testimonial__name {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #ffffff;
+}
+
+.leto-testimonial__role {
+	font-size: 0.875rem;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.leto-testimonials__nav {
+	position: absolute;
+	right: clamp(1.5rem, 3vw, 2.5rem);
+	bottom: clamp(1.5rem, 3vw, 2.5rem);
+	display: flex;
+	gap: 0.5rem;
+}
+
+.leto-testimonials__arrow {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.5rem;
+	height: 2.5rem;
+	background-color: transparent;
+	border: 1.5px solid rgba(255, 255, 255, 0.3);
+	color: #ffffff;
+	border-radius: 50%;
+	cursor: pointer;
+	padding: 0;
+	transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.leto-testimonials__arrow:hover,
+.leto-testimonials__arrow:focus {
+	background-color: rgba(255, 255, 255, 0.1);
+	border-color: rgba(255, 255, 255, 0.5);
+}
+
+.leto-testimonials__arrow:focus-visible {
+	outline: 2px solid #ffffff;
+	outline-offset: 2px;
+}
+
+.leto-testimonials__arrow svg {
+	width: 1.125rem;
+	height: 1.125rem;
+}
+
+.leto-testimonials__dots {
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+	margin-top: 2rem;
+}
+
+.leto-testimonials__dot {
+	width: 0.5rem;
+	height: 0.5rem;
+	padding: 0;
+	background-color: rgba(255, 255, 255, 0.3);
+	border: 0;
+	border-radius: 999px;
+	cursor: pointer;
+	transition: background-color 0.2s ease, width 0.2s ease;
+}
+
+.leto-testimonials__dot.is-active {
+	width: 1.75rem;
+	background-color: #ffffff;
+}
+
+.leto-testimonials__dot:focus-visible {
+	outline: 2px solid #ffffff;
+	outline-offset: 3px;
+}
+
+/*--------------------------------------------------------------
+# Purchase section
+--------------------------------------------------------------*/
+.leto-purchase {
+	background-color: #ffffff;
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-purchase__header {
+	text-align: center;
+	margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.leto-purchase__title {
+	margin: 0 0 1rem;
+	font-size: clamp(1.75rem, 3.8vw, 2.5rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-purchase__subtitle {
+	margin: 0 auto;
+	max-width: 42rem;
+	color: #4b5563;
+	font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-purchase__grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1.5rem;
+	margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+@media (max-width: 1023px) {
+	.leto-purchase__grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 575px) {
+	.leto-purchase__grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.leto-purchase-card {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 2rem;
+	background-color: #ffffff;
+	border: 1px solid #1d2327;
+	border-radius: 1rem;
+}
+
+.leto-purchase-card__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 3.5rem;
+	height: 3.5rem;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	border-radius: 0.75rem;
+	margin-bottom: 0.5rem;
+}
+
+.leto-purchase-card__icon svg {
+	width: 1.75rem;
+	height: 1.75rem;
+}
+
+.leto-purchase-card__title {
+	margin: 0;
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: var(--leto-color-developer-link, #1E40AF);
+	line-height: 1.3;
+}
+
+.leto-purchase-card__desc {
+	margin: 0;
+	color: #4b5563;
+	font-size: 0.9375rem;
+	line-height: 1.5;
+}
+
+.leto-purchase-card__list {
+	list-style: none;
+	margin: 0.5rem 0 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.leto-purchase-card__item {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	color: #1d2327;
+	font-size: 0.9375rem;
+	line-height: 1.4;
+}
+
+.leto-purchase-card__check {
+	width: 1.125rem;
+	height: 1.125rem;
+	flex-shrink: 0;
+	color: var(--leto-color-developer-link, #1E40AF);
+}
+
+.leto-purchase__actions {
+	display: flex;
+	justify-content: center;
+}
+
+.leto-purchase__btn {
+	display: inline-block;
+	padding: 1rem 1.75rem;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	font-size: 1rem;
+	font-weight: 600;
+	text-decoration: none;
+	border-radius: 0.5rem;
+	transition: background-color 0.2s ease;
+}
+
+.leto-purchase__btn:hover,
+.leto-purchase__btn:focus {
+	background-color: #0a2e22;
+	color: #ffffff;
+	text-decoration: none;
+}
+
+/*--------------------------------------------------------------
+# About page hero
+--------------------------------------------------------------*/
+.leto-about-hero {
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	padding-block: clamp(4rem, 8vw, 7rem);
+	text-align: center;
+}
+
+.leto-about-hero__inner {
+	max-width: 56rem;
+	margin-inline: auto;
+}
+
+.leto-about-hero__title {
+	margin: 0 0 1.5rem;
+	font-size: clamp(2.25rem, 5vw, 3.75rem);
+	font-weight: 700;
+	line-height: 1.1;
+	color: #ffffff;
+}
+
+.leto-about-hero__subtitle {
+	margin: 0 auto;
+	max-width: 42rem;
+	font-size: clamp(0.9375rem, 1.3vw, 1.125rem);
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.85);
+}
+
+/*--------------------------------------------------------------
+# Location section (about page)
+--------------------------------------------------------------*/
+.leto-location {
+	background-color: #ffffff;
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-location__inner {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: clamp(2rem, 5vw, 4.5rem);
+	align-items: center;
+}
+
+@media (max-width: 767px) {
+	.leto-location__inner {
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+	}
+}
+
+.leto-location__content {
+	max-width: 34rem;
+}
+
+.leto-location__eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0 0 1.25rem;
+	color: var(--leto-color-primary, #0E3D2E);
+	font-size: 0.875rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	line-height: 1;
+}
+
+.leto-location__eyebrow-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+	flex-shrink: 0;
+}
+
+.leto-location__title {
+	margin: 0 0 1.5rem;
+	font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-location__desc {
+	margin: 0 0 2.25rem;
+	color: var(--leto-color-muted, #50575e);
+	font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-location__stats {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+}
+
+@media (max-width: 575px) {
+	.leto-location__stats {
+		grid-template-columns: 1fr;
+	}
+}
+
+.leto-location__stat {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.35rem;
+	padding: clamp(1.25rem, 2vw, 1.75rem) 1.5rem;
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	border-radius: 1rem;
+	text-align: center;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.leto-location__stat:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.leto-location__stat-value {
+	font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.1;
+}
+
+.leto-location__stat-label {
+	font-size: 0.875rem;
+	color: var(--leto-color-muted, #50575e);
+	line-height: 1.3;
+}
+
+.leto-location__media {
+	position: relative;
+	border-radius: 1.25rem;
+	overflow: hidden;
+	aspect-ratio: 4 / 3;
+}
+
+@media (max-width: 767px) {
+	.leto-location__media {
+		order: -1;
+	}
+}
+
+.leto-location__image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+/*--------------------------------------------------------------
+# Infrastructure section (about page)
+--------------------------------------------------------------*/
+.leto-infra {
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-infra__header {
+	text-align: center;
+	margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.leto-infra__eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0 0 1rem;
+	color: var(--leto-color-primary, #0E3D2E);
+	font-size: 0.875rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	line-height: 1;
+}
+
+.leto-infra__eyebrow-icon {
+	width: 1.5rem;
+	height: 1.5rem;
+	flex-shrink: 0;
+}
+
+.leto-infra__title {
+	margin: 0 0 0.75rem;
+	font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-infra__subtitle {
+	margin: 0 auto;
+	max-width: 36rem;
+	color: var(--leto-color-muted, #50575e);
+	font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-infra__grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.5rem;
+}
+
+@media (max-width: 1023px) {
+	.leto-infra__grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 575px) {
+	.leto-infra__grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.leto-infra-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	padding: clamp(1.5rem, 2.5vw, 2rem);
+	background-color: #ffffff;
+	border: 1px solid var(--leto-color-border, #dcdcde);
+	border-radius: 1rem;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.leto-infra-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.leto-infra-card__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 3rem;
+	height: 3rem;
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	color: var(--leto-color-primary, #0E3D2E);
+	border-radius: 0.5rem;
+	flex-shrink: 0;
+}
+
+.leto-infra-card__icon svg {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.leto-infra-card__title {
+	margin: 0;
+	font-size: 1.125rem;
+	font-weight: 600;
+	color: var(--leto-color-developer-link, #1E40AF);
+	line-height: 1.3;
+}
+
+.leto-infra-card__desc {
+	margin: 0;
+	color: var(--leto-color-muted, #50575e);
+	font-size: 0.9375rem;
+	line-height: 1.5;
+}
+
+/*--------------------------------------------------------------
+# Tourist cluster section (about page)
+--------------------------------------------------------------*/
+.leto-tourism {
+	background-color: #ffffff;
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-tourism__header {
+	text-align: center;
+	margin-bottom: clamp(2rem, 4vw, 3.5rem);
+	max-width: 48rem;
+	margin-inline: auto;
+}
+
+.leto-tourism__title {
+	margin: 0 0 1rem;
+	font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-tourism__subtitle {
+	margin: 0 auto;
+	color: var(--leto-color-muted, #50575e);
+	font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-tourism__grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1.5rem;
+}
+
+@media (max-width: 767px) {
+	.leto-tourism__grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.leto-tourism-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	padding: clamp(1.5rem, 2.5vw, 2rem);
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	border-radius: 1rem;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.leto-tourism-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.leto-tourism-card__top {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 0.75rem;
+}
+
+.leto-tourism-card__title {
+	margin: 0;
+	font-size: clamp(1rem, 1.3vw, 1.125rem);
+	font-weight: 600;
+	color: var(--leto-color-developer-link, #1E40AF);
+	line-height: 1.3;
+}
+
+.leto-tourism-card__badge {
+	display: inline-flex;
+	align-items: center;
+	white-space: nowrap;
+	padding: 0.25rem 0.75rem;
+	border-radius: 999px;
+	font-size: 0.75rem;
+	font-weight: 600;
+	background-color: #ffffff;
+	color: var(--leto-color-primary, #0E3D2E);
+	border: 1px solid var(--leto-color-border, #dcdcde);
+	flex-shrink: 0;
+}
+
+.leto-tourism-card__badge--active {
+	background-color: #e6f4ea;
+	border-color: #a3d9b1;
+	color: #1a7431;
+}
+
+.leto-tourism-card__badge--building {
+	background-color: #fff3e0;
+	border-color: #f5c563;
+	color: #b37400;
+}
+
+.leto-tourism-card__badge--restoration {
+	background-color: #e3f2fd;
+	border-color: #90caf9;
+	color: #1565c0;
+}
+
+.leto-tourism-card__badge--project {
+	background-color: #f3e5f5;
+	border-color: #ce93d8;
+	color: #7b1fa2;
+}
+
+.leto-tourism-card__desc {
+	margin: 0;
+	color: var(--leto-color-muted, #50575e);
+	font-size: 0.9375rem;
+	line-height: 1.5;
+}
+
+/*--------------------------------------------------------------
+ # Developer page — Hero
+ --------------------------------------------------------------*/
+.leto-dp-hero {
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	padding-block: clamp(4rem, 8vw, 7rem);
+	text-align: center;
+}
+
+.leto-dp-hero__inner {
+	max-width: 56rem;
+	margin-inline: auto;
+}
+
+.leto-dp-hero__title {
+	margin: 0 0 1.5rem;
+	font-size: clamp(2.25rem, 5vw, 3.75rem);
+	font-weight: 700;
+	line-height: 1.1;
+	color: #ffffff;
+}
+
+.leto-dp-hero__subtitle {
+	margin: 0 auto;
+	max-width: 42rem;
+	font-size: clamp(0.9375rem, 1.3vw, 1.125rem);
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.85);
+}
+
+/*--------------------------------------------------------------
+ # Developer page — About
+ --------------------------------------------------------------*/
+.leto-dp-about {
+	background-color: #ffffff;
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-dp-about__inner {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: clamp(2rem, 5vw, 4.5rem);
+	align-items: center;
+}
+
+@media (max-width: 767px) {
+	.leto-dp-about__inner {
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+	}
+}
+
+.leto-dp-about__content {
+	max-width: 34rem;
+}
+
+.leto-dp-about__title {
+	margin: 0 0 1.5rem;
+	font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-dp-about__desc {
+	margin: 0 0 1.25rem;
+	color: var(--leto-color-muted, #50575e);
+	font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-dp-about__stats {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1rem;
+	margin-top: 2rem;
+}
+
+@media (max-width: 575px) {
+	.leto-dp-about__stats {
+		grid-template-columns: 1fr;
+	}
+}
+
+.leto-dp-about__stat {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1.25rem 1rem;
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	border-radius: 0.75rem;
+	text-align: center;
+}
+
+.leto-dp-about__stat-value {
+	font-size: clamp(1.5rem, 2.5vw, 2rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.2;
+}
+
+.leto-dp-about__stat-label {
+	margin-top: 0.25rem;
+	font-size: 0.8125rem;
+	color: var(--leto-color-muted, #50575e);
+	line-height: 1.3;
+}
+
+.leto-dp-about__media {
+	display: flex;
+	justify-content: center;
+}
+
+.leto-dp-about__image {
+	width: 100%;
+	max-width: 28rem;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	border-radius: 1rem;
+}
+
+@media (max-width: 767px) {
+	.leto-dp-about__image {
+		max-width: 100%;
+	}
+}
+
+/*--------------------------------------------------------------
+ # Developer page — Features (6 cards)
+ --------------------------------------------------------------*/
+.leto-dp-features {
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-dp-features__grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1.5rem;
+}
+
+@media (max-width: 767px) {
+	.leto-dp-features__grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.leto-dp-features-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: 1.5rem;
+	background-color: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 1rem;
+	transition: box-shadow 0.2s ease;
+}
+
+.leto-dp-features-card:hover {
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.leto-dp-features-card__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 3rem;
+	height: 3rem;
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	color: var(--leto-color-primary, #0E3D2E);
+	border-radius: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.leto-dp-features-card__icon svg {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.leto-dp-features-card__title {
+	margin: 0 0 0.25rem;
+	font-size: 1.0625rem;
+	font-weight: 700;
+	color: var(--leto-color-developer-link, #1E40AF);
+	line-height: 1.3;
+}
+
+.leto-dp-features-card__desc {
+	margin: 0;
+	color: #4b5563;
+	font-size: 0.9375rem;
+	line-height: 1.5;
+}
+
+/*--------------------------------------------------------------
+ # Developer page — Guarantees
+ --------------------------------------------------------------*/
+.leto-dp-guarantees {
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-dp-guarantees__header {
+	text-align: center;
+	margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.leto-dp-guarantees__eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0 0 1.25rem;
+	color: var(--leto-color-primary, #0E3D2E);
+	font-size: 0.875rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	line-height: 1;
+}
+
+.leto-dp-guarantees__eyebrow-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+	flex-shrink: 0;
+}
+
+.leto-dp-guarantees__title {
+	margin: 0;
+	font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-dp-guarantees__list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	max-width: 48rem;
+	margin-inline: auto;
+}
+
+.leto-dp-guarantees-item {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 1rem 1.5rem;
+	background-color: #ffffff;
+	border-radius: 0.75rem;
+}
+
+.leto-dp-guarantees-item__check {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.5rem;
+	height: 1.5rem;
+	flex-shrink: 0;
+	color: #2563eb;
+}
+
+.leto-dp-guarantees-item__check svg {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+.leto-dp-guarantees-item__text {
+	font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+	color: var(--leto-color-primary, #0E3D2E);
+	font-weight: 500;
+	line-height: 1.5;
+}
+
+/*--------------------------------------------------------------
+ # Developer page — Reviews CTA
+ --------------------------------------------------------------*/
+.leto-dp-reviews {
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+	text-align: center;
+}
+
+.leto-dp-reviews__inner {
+	max-width: 48rem;
+	margin-inline: auto;
+}
+
+.leto-dp-reviews__eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0 0 1.25rem;
+	color: rgba(255, 255, 255, 0.85);
+	font-size: 0.875rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	line-height: 1;
+}
+
+.leto-dp-reviews__eyebrow-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+	flex-shrink: 0;
+}
+
+.leto-dp-reviews__title {
+	margin: 0 0 1.25rem;
+	font-size: clamp(1.75rem, 3.8vw, 2.5rem);
+	font-weight: 700;
+	color: #ffffff;
+	line-height: 1.15;
+}
+
+.leto-dp-reviews__desc {
+	margin: 0 0 2rem;
+	font-size: clamp(0.9375rem, 1.3vw, 1.125rem);
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.85);
+}
+
+.leto-dp-reviews__btn {
+	display: inline-block;
+	padding: 0.875rem 1.75rem;
+	background-color: #ffffff;
+	color: var(--leto-color-primary, #0E3D2E);
+	font-size: 1rem;
+	font-weight: 600;
+	text-decoration: none;
+	border-radius: 0.5rem;
+	transition: background-color 0.2s ease;
+}
+
+.leto-dp-reviews__btn:hover,
+.leto-dp-reviews__btn:focus {
+	background-color: rgba(255, 255, 255, 0.9);
+	color: var(--leto-color-primary, #0E3D2E);
+	text-decoration: none;
+}
+
+.leto-page-developer .leto-site-footer {
+	margin-top: 0;
+}
+
+.leto-page-developer .leto-dp-reviews + .leto-site-footer {
+	border-top: none;
+}
+
+/*--------------------------------------------------------------
+ # Ecofarm — Hero
+ --------------------------------------------------------------*/
+.leto-ef-hero {
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-ef-hero__inner {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: clamp(2rem, 5vw, 4.5rem);
+	align-items: center;
+}
+
+@media (max-width: 767px) {
+	.leto-ef-hero__inner {
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+	}
+}
+
+.leto-ef-hero__content {
+	max-width: 34rem;
+}
+
+.leto-ef-hero__eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0 0 1.25rem;
+	color: rgba(255, 255, 255, 0.85);
+	font-size: 0.875rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	line-height: 1;
+}
+
+.leto-ef-hero__eyebrow-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+	flex-shrink: 0;
+}
+
+.leto-ef-hero__title {
+	margin: 0 0 1.5rem;
+	font-size: clamp(2rem, 4.5vw, 3.25rem);
+	font-weight: 700;
+	line-height: 1.1;
+	color: #ffffff;
+}
+
+.leto-ef-hero__desc {
+	margin: 0 0 1.25rem;
+	font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.85);
+}
+
+.leto-ef-hero__quote {
+	margin: 0;
+	font-size: clamp(0.875rem, 1.1vw, 1rem);
+	font-style: italic;
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.leto-ef-hero__media {
+	display: flex;
+	justify-content: center;
+}
+
+.leto-ef-hero__image {
+	width: 100%;
+	max-width: 30rem;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	border-radius: 1rem;
+}
+
+@media (max-width: 767px) {
+	.leto-ef-hero__image {
+		max-width: 100%;
+	}
+}
+
+/*--------------------------------------------------------------
+ # Ecofarm — Story
+ --------------------------------------------------------------*/
+.leto-ef-story {
+	background-color: #ffffff;
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-ef-story__header {
+	text-align: center;
+	margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.leto-ef-story__title {
+	margin: 0 0 1.25rem;
+	font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-ef-story__desc {
+	margin: 0 auto;
+	max-width: 42rem;
+	color: var(--leto-color-muted, #50575e);
+	font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-ef-story__grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1.5rem;
+}
+
+@media (max-width: 767px) {
+	.leto-ef-story__grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.leto-ef-story-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: 1.5rem;
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	border: 1px solid #e5e7eb;
+	border-radius: 1rem;
+}
+
+.leto-ef-story-card__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 3rem;
+	height: 3rem;
+	background-color: #ffffff;
+	color: var(--leto-color-primary, #0E3D2E);
+	border-radius: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.leto-ef-story-card__icon svg {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.leto-ef-story-card__title {
+	margin: 0 0 0.25rem;
+	font-size: 1.0625rem;
+	font-weight: 700;
+	color: var(--leto-color-developer-link, #1E40AF);
+	line-height: 1.3;
+}
+
+.leto-ef-story-card__desc {
+	margin: 0;
+	color: #4b5563;
+	font-size: 0.9375rem;
+	line-height: 1.5;
+}
+
+/*--------------------------------------------------------------
+ # Ecofarm — Products
+ --------------------------------------------------------------*/
+.leto-ef-products {
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-ef-products__header {
+	text-align: center;
+	margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.leto-ef-products__title {
+	margin: 0 0 0.75rem;
+	font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-ef-products__subtitle {
+	margin: 0;
+	color: var(--leto-color-muted, #50575e);
+	font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-ef-products__list {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	max-width: 42rem;
+	margin-inline: auto;
+	background-color: #ffffff;
+	border-radius: 1rem;
+	overflow: hidden;
+	border: 1px solid #e5e7eb;
+}
+
+.leto-ef-products-item {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 1rem 1.5rem;
+	border-bottom: 1px solid #e5e7eb;
+}
+
+.leto-ef-products-item:last-child {
+	border-bottom: none;
+}
+
+.leto-ef-products-item__icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2rem;
+	height: 2rem;
+	flex-shrink: 0;
+	color: var(--leto-color-primary, #0E3D2E);
+}
+
+.leto-ef-products-item__icon svg {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+.leto-ef-products-item__name {
+	flex: 1;
+	font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+	color: var(--leto-color-primary, #0E3D2E);
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.leto-ef-products-item__price {
+	font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+	font-weight: 600;
+	color: var(--leto-color-primary, #0E3D2E);
+	white-space: nowrap;
+}
+
+/*--------------------------------------------------------------
+ # Ecofarm — Subscribe
+ --------------------------------------------------------------*/
+.leto-ef-subscribe {
+	background-color: #ffffff;
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-ef-subscribe__inner {
+	max-width: 36rem;
+	margin-inline: auto;
+	text-align: center;
+}
+
+.leto-ef-subscribe__header {
+	margin-bottom: 2rem;
+}
+
+.leto-ef-subscribe__eyebrow {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 3rem;
+	height: 3rem;
+	margin: 0 auto 1rem;
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	color: var(--leto-color-primary, #0E3D2E);
+	border-radius: 0.75rem;
+}
+
+.leto-ef-subscribe__eyebrow-icon {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.leto-ef-subscribe__title {
+	margin: 0 0 0.75rem;
+	font-size: clamp(1.5rem, 3vw, 2.25rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-ef-subscribe__desc {
+	margin: 0;
+	color: var(--leto-color-muted, #50575e);
+	font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-ef-subscribe__form-wrapper {
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	border-radius: 1rem;
+	padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.leto-ef-subscribe__form {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+
+.leto-ef-subscribe__field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	text-align: left;
+}
+
+.leto-ef-subscribe__label {
+	font-size: 0.9375rem;
+	color: var(--leto-color-primary, #0E3D2E);
+	font-weight: 500;
+}
+
+.leto-ef-subscribe__input {
+	padding: 0.875rem 1rem;
+	border: 1px solid #d1d5db;
+	border-radius: 0.5rem;
+	font-size: 1rem;
+	color: var(--leto-color-text, #1d2327);
+	background-color: #ffffff;
+	transition: border-color 0.2s ease;
+}
+
+.leto-ef-subscribe__input:focus {
+	outline: none;
+	border-color: var(--leto-color-primary, #0E3D2E);
+	box-shadow: 0 0 0 3px rgba(14, 61, 46, 0.1);
+}
+
+.leto-ef-subscribe__input::placeholder {
+	color: #9ca3af;
+}
+
+.leto-ef-subscribe__radios {
+	display: flex;
+	gap: 1rem;
+}
+
+@media (max-width: 575px) {
+	.leto-ef-subscribe__radios {
+		flex-direction: column;
+	}
+}
+
+.leto-ef-subscribe__radio {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.875rem 1rem;
+	background-color: #ffffff;
+	border: 1px solid #d1d5db;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	font-size: 0.9375rem;
+	color: var(--leto-color-text, #1d2327);
+	transition: border-color 0.2s ease;
+}
+
+.leto-ef-subscribe__radio:has(input:checked) {
+	border-color: var(--leto-color-primary, #0E3D2E);
+	background-color: rgba(14, 61, 46, 0.04);
+}
+
+.leto-ef-subscribe__radio input {
+	display: none;
+}
+
+.leto-ef-subscribe__radio-mark {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.125rem;
+	height: 1.125rem;
+	border: 2px solid #d1d5db;
+	border-radius: 50%;
+	flex-shrink: 0;
+	transition: border-color 0.2s ease;
+}
+
+.leto-ef-subscribe__radio:has(input:checked) .leto-ef-subscribe__radio-mark {
+	border-color: var(--leto-color-primary, #0E3D2E);
+}
+
+.leto-ef-subscribe__radio-mark::after {
+	content: '';
+	width: 0.5rem;
+	height: 0.5rem;
+	border-radius: 50%;
+	background-color: transparent;
+	transition: background-color 0.2s ease;
+}
+
+.leto-ef-subscribe__radio:has(input:checked) .leto-ef-subscribe__radio-mark::after {
+	background-color: var(--leto-color-primary, #0E3D2E);
+}
+
+.leto-ef-subscribe__btn {
+	padding: 1rem;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	font-size: 1.0625rem;
+	font-weight: 600;
+	border: none;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.leto-ef-subscribe__btn:hover,
+.leto-ef-subscribe__btn:focus {
+	background-color: #0a2e22;
+}
+
+/* CF7 form overrides inside subscribe section */
+.leto-ef-subscribe__form-wrapper .wpcf7 input[type="text"],
+.leto-ef-subscribe__form-wrapper .wpcf7 input[type="tel"],
+.leto-ef-subscribe__form-wrapper .wpcf7 input[type="email"] {
+	padding: 0.875rem 1rem;
+	border: 1px solid #d1d5db;
+	border-radius: 0.5rem;
+	font-size: 1rem;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.leto-ef-subscribe__form-wrapper .wpcf7 input[type="submit"] {
+	padding: 1rem;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	font-size: 1.0625rem;
+	font-weight: 600;
+	border: none;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	width: 100%;
+}
+
+.leto-ef-subscribe__form-wrapper .wpcf7 input[type="submit"]:hover {
+	background-color: #0a2e22;
+}
+
+.leto-ef-subscribe__form-wrapper .wpcf7 label {
+	font-size: 0.9375rem;
+	color: var(--leto-color-primary, #0E3D2E);
+	font-weight: 500;
+}
+
+.leto-ef-subscribe__form-wrapper .wpcf7 .wpcf7-radio label {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.875rem 1rem;
+	background-color: #ffffff;
+	border: 1px solid #d1d5db;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	font-size: 0.9375rem;
+}
+
+.leto-ef-subscribe__form-wrapper .wpcf7 .wpcf7-radio label:has(input:checked) {
+	border-color: var(--leto-color-primary, #0E3D2E);
+	background-color: rgba(14, 61, 46, 0.04);
+}
+
+.leto-ef-subscribe__form-wrapper .wpcf7-response-output {
+	border-radius: 0.5rem;
+	margin: 0;
+}
+
+/*--------------------------------------------------------------
+ # Ecofarm — Masterclass
+ --------------------------------------------------------------*/
+.leto-ef-masterclass {
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-ef-masterclass__header {
+	text-align: center;
+	margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.leto-ef-masterclass__eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0 0 1.25rem;
+	color: var(--leto-color-primary, #0E3D2E);
+	font-size: 0.875rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	line-height: 1;
+}
+
+.leto-ef-masterclass__eyebrow-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+	flex-shrink: 0;
+}
+
+.leto-ef-masterclass__title {
+	margin: 0 0 1.25rem;
+	font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-ef-masterclass__desc {
+	margin: 0 auto;
+	max-width: 42rem;
+	color: var(--leto-color-muted, #50575e);
+	font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-ef-masterclass__card {
+	max-width: 28rem;
+	margin-inline: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 2.5rem 2rem;
+	background-color: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 1rem;
+	text-align: center;
+}
+
+.leto-ef-masterclass__card-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 3rem;
+	height: 3rem;
+	color: var(--leto-color-primary, #0E3D2E);
+}
+
+.leto-ef-masterclass__card-icon svg {
+	width: 2rem;
+	height: 2rem;
+}
+
+.leto-ef-masterclass__card-title {
+	margin: 0;
+	font-size: 1.125rem;
+	font-weight: 700;
+	color: var(--leto-color-developer-link, #1E40AF);
+	line-height: 1.3;
+}
+
+.leto-ef-masterclass__card-desc {
+	margin: 0;
+	color: var(--leto-color-muted, #50575e);
+	font-size: 0.9375rem;
+	line-height: 1.5;
+}
+
+/*--------------------------------------------------------------
+ # Usloviya — Hero
+ --------------------------------------------------------------*/
+.leto-usl-hero {
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	padding-block: clamp(4rem, 8vw, 7rem);
+	text-align: center;
+}
+
+.leto-usl-hero__inner {
+	max-width: 56rem;
+	margin-inline: auto;
+}
+
+.leto-usl-hero__title {
+	margin: 0 0 1.5rem;
+	font-size: clamp(2.25rem, 5vw, 3.75rem);
+	font-weight: 700;
+	line-height: 1.1;
+	color: #ffffff;
+}
+
+.leto-usl-hero__subtitle {
+	margin: 0 auto;
+	max-width: 42rem;
+	font-size: clamp(0.9375rem, 1.3vw, 1.125rem);
+	line-height: 1.6;
+	color: rgba(255, 255, 255, 0.85);
+}
+
+/*--------------------------------------------------------------
+ # Usloviya — Payment (3 cards)
+ --------------------------------------------------------------*/
+.leto-usl-payment {
+	background-color: #ffffff;
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-usl-payment__grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1.5rem;
+}
+
+@media (max-width: 767px) {
+	.leto-usl-payment__grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.leto-usl-payment-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	padding: 1.75rem;
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	border: 1px solid #e5e7eb;
+	border-radius: 1rem;
+}
+
+.leto-usl-payment-card__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 3.25rem;
+	height: 3.25rem;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	border-radius: 0.625rem;
+	margin-bottom: 0.25rem;
+}
+
+.leto-usl-payment-card__icon svg {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.leto-usl-payment-card__title {
+	margin: 0;
+	font-size: 1.125rem;
+	font-weight: 700;
+	color: var(--leto-color-developer-link, #1E40AF);
+	line-height: 1.3;
+}
+
+.leto-usl-payment-card__desc {
+	margin: 0;
+	color: #4b5563;
+	font-size: 0.9375rem;
+	line-height: 1.5;
+}
+
+.leto-usl-payment-card__list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin: 0.5rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.leto-usl-payment-card__item {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 0.9375rem;
+	color: var(--leto-color-primary, #0E3D2E);
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.leto-usl-payment-card__check {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.125rem;
+	height: 1.125rem;
+	flex-shrink: 0;
+	color: #2563eb;
+}
+
+.leto-usl-payment-card__check svg {
+	width: 1rem;
+	height: 1rem;
+}
+
+/*--------------------------------------------------------------
+ # Usloviya — Prices (table)
+ --------------------------------------------------------------*/
+.leto-usl-prices {
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.leto-usl-prices__header {
+	text-align: center;
+	margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.leto-usl-prices__title {
+	margin: 0 0 0.75rem;
+	font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-usl-prices__subtitle {
+	margin: 0;
+	color: var(--leto-color-muted, #50575e);
+	font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+	line-height: 1.6;
+}
+
+.leto-usl-prices__table-wrapper {
+	overflow-x: auto;
+	margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.leto-usl-prices__table {
+	width: 100%;
+	max-width: 52rem;
+	margin-inline: auto;
+	border-collapse: separate;
+	border-spacing: 0;
+	background-color: #ffffff;
+	border-radius: 1rem;
+	overflow: hidden;
+	border: 1px solid #e5e7eb;
+}
+
+.leto-usl-prices__table th {
+	padding: 1rem 1.25rem;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	font-size: 0.9375rem;
+	font-weight: 600;
+	text-align: left;
+	white-space: nowrap;
+}
+
+.leto-usl-prices__table td {
+	padding: 1rem 1.25rem;
+	font-size: 0.9375rem;
+	color: var(--leto-color-text, #1d2327);
+	border-bottom: 1px solid #e5e7eb;
+}
+
+.leto-usl-prices__table tbody tr:last-child td {
+	border-bottom: none;
+}
+
+.leto-usl-prices__table tbody tr:nth-child(even) {
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+}
+
+.leto-usl-prices__name {
+	color: var(--leto-color-developer-link, #1E40AF);
+	font-weight: 600;
+}
+
+.leto-usl-prices__potential {
+	font-weight: 600;
+	color: var(--leto-color-primary, #0E3D2E);
+}
+
+.leto-usl-prices__quote {
+	margin: 0 auto;
+	max-width: 42rem;
+	padding: 2rem;
+	background-color: rgba(255, 255, 255, 0.5);
+	border-radius: 1rem;
+	font-size: clamp(0.875rem, 1.1vw, 1rem);
+	font-style: italic;
+	line-height: 1.7;
+	color: var(--leto-color-muted, #50575e);
+	text-align: center;
+}
+
+@media (max-width: 575px) {
+	.leto-usl-prices__table th,
+	.leto-usl-prices__table td {
+		padding: 0.75rem 0.875rem;
+		font-size: 0.8125rem;
+	}
+}
+
+/*--------------------------------------------------------------
+ # Usloviya — CTA (seamless into footer)
+ --------------------------------------------------------------*/
+.leto-usl-cta {
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	padding-block: clamp(3.5rem, 7vw, 5rem);
+	padding-bottom: clamp(3.5rem, 7vw, 5rem);
+}
+
+.leto-usl-cta__inner {
+	max-width: 42rem;
+	margin-inline: auto;
+	text-align: center;
+}
+
+.leto-usl-cta__title {
+	margin: 0 0 2rem;
+	font-size: clamp(1.5rem, 3vw, 2.25rem);
+	font-weight: 700;
+	color: #ffffff;
+	line-height: 1.2;
+}
+
+.leto-usl-cta__btn {
+	display: inline-block;
+	padding: 0.875rem 1.75rem;
+	background-color: #ffffff;
+	color: var(--leto-color-primary, #0E3D2E);
+	font-size: 1rem;
+	font-weight: 600;
+	text-decoration: none;
+	border-radius: 0.5rem;
+	transition: background-color 0.2s ease;
+}
+
+.leto-usl-cta__btn:hover,
+.leto-usl-cta__btn:focus {
+	background-color: rgba(255, 255, 255, 0.9);
+	color: var(--leto-color-primary, #0E3D2E);
+	text-decoration: none;
+}
+
+.leto-page-usloviya .leto-site-footer {
+	margin-top: 0;
+}
+
+.leto-page-usloviya .leto-usl-cta + .leto-site-footer {
+	border-top: none;
+}
+
+/*--------------------------------------------------------------
+ # Kontakty — Contacts
+ --------------------------------------------------------------*/
+.leto-kontakty {
+	background-color: #ffffff;
+	padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+.leto-kontakty__inner {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: clamp(2rem, 5vw, 4rem);
+	align-items: start;
+}
+
+@media (max-width: 767px) {
+	.leto-kontakty__inner {
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+	}
+}
+
+.leto-kontakty__title {
+	margin: 0 0 2rem;
+	font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-kontakty__info {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	margin-bottom: 2rem;
+}
+
+.leto-kontakty__info-item {
+	display: flex;
+	align-items: flex-start;
+	gap: 1rem;
+}
+
+.leto-kontakty__info-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	flex-shrink: 0;
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	color: var(--leto-color-primary, #0E3D2E);
+	border-radius: 0.625rem;
+}
+
+.leto-kontakty__info-icon svg {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+.leto-kontakty__info-content {
+	display: flex;
+	flex-direction: column;
+	gap: 0.125rem;
+}
+
+.leto-kontakty__info-label {
+	font-size: 0.8125rem;
+	color: var(--leto-color-muted, #50575e);
+	line-height: 1.4;
+}
+
+.leto-kontakty__info-value {
+	font-size: 1rem;
+	color: var(--leto-color-text, #1d2327);
+	font-weight: 500;
+	line-height: 1.4;
+	text-decoration: none;
+}
+
+a.leto-kontakty__info-value:hover,
+a.leto-kontakty__info-value:focus {
+	color: var(--leto-color-primary, #0E3D2E);
+	text-decoration: underline;
+}
+
+.leto-kontakty__map {
+	margin-bottom: 1.5rem;
+}
+
+.leto-kontakty__map-placeholder {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	aspect-ratio: 16 / 9;
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	border: 1px solid #e5e7eb;
+	border-radius: 1rem;
+	gap: 0.5rem;
+}
+
+.leto-kontakty__map-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.5rem;
+	height: 2.5rem;
+	color: var(--leto-color-primary, #0E3D2E);
+}
+
+.leto-kontakty__map-icon svg {
+	width: 1.75rem;
+	height: 1.75rem;
+}
+
+.leto-kontakty__map-label {
+	font-size: 0.9375rem;
+	color: var(--leto-color-primary, #0E3D2E);
+	font-weight: 500;
+}
+
+.leto-kontakty__map-address {
+	font-size: 0.8125rem;
+	color: var(--leto-color-muted, #50575e);
+}
+
+.leto-kontakty__directions {
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	border: 1px solid #e5e7eb;
+	border-radius: 1rem;
+	padding: 1.5rem;
+}
+
+.leto-kontakty__directions-title {
+	margin: 0 0 1rem;
+	font-size: 1.125rem;
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.3;
+}
+
+.leto-kontakty__directions-list {
+	margin: 0;
+	padding-left: 1.25rem;
+}
+
+.leto-kontakty__directions-list li {
+	margin-bottom: 0.5rem;
+	font-size: 0.9375rem;
+	color: #4b5563;
+	line-height: 1.5;
+}
+
+.leto-kontakty__directions-list li:last-child {
+	margin-bottom: 0;
+}
+
+.leto-kontakty__directions-list strong {
+	color: var(--leto-color-developer-link, #1E40AF);
+	font-weight: 600;
+}
+
+/* Form column */
+.leto-kontakty__form-title {
+	margin: 0 0 1.5rem;
+	font-size: clamp(1.5rem, 3vw, 2.25rem);
+	font-weight: 700;
+	color: var(--leto-color-primary, #0E3D2E);
+	line-height: 1.15;
+}
+
+.leto-kontakty__form-wrapper {
+	background-color: var(--leto-color-queues-bg, #F5EFD9);
+	border-radius: 1rem;
+	padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.leto-kontakty__form {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+
+.leto-kontakty__field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.leto-kontakty__label {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.375rem;
+	font-size: 0.9375rem;
+	color: var(--leto-color-primary, #0E3D2E);
+	font-weight: 500;
+}
+
+.leto-kontakty__label-icon {
+	width: 1rem;
+	height: 1rem;
+	flex-shrink: 0;
+}
+
+.leto-kontakty__input {
+	padding: 0.875rem 1rem;
+	border: 1px solid #d1d5db;
+	border-radius: 0.5rem;
+	font-size: 1rem;
+	color: var(--leto-color-text, #1d2327);
+	background-color: #ffffff;
+	transition: border-color 0.2s ease;
+}
+
+.leto-kontakty__input:focus {
+	outline: none;
+	border-color: var(--leto-color-primary, #0E3D2E);
+	box-shadow: 0 0 0 3px rgba(14, 61, 46, 0.1);
+}
+
+.leto-kontakty__input::placeholder {
+	color: #9ca3af;
+}
+
+.leto-kontakty__btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 1rem;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	font-size: 1.0625rem;
+	font-weight: 600;
+	border: none;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.leto-kontakty__btn:hover,
+.leto-kontakty__btn:focus {
+	background-color: #0a2e22;
+}
+
+.leto-kontakty__btn-icon {
+	width: 1.125rem;
+	height: 1.125rem;
+}
+
+.leto-kontakty__consent {
+	margin: 0;
+	text-align: center;
+	font-size: 0.8125rem;
+	color: var(--leto-color-muted, #50575e);
+	line-height: 1.4;
+}
+
+/* CF7 form overrides */
+.leto-kontakty__form-wrapper .wpcf7 input[type="text"],
+.leto-kontakty__form-wrapper .wpcf7 input[type="tel"],
+.leto-kontakty__form-wrapper .wpcf7 input[type="date"],
+.leto-kontakty__form-wrapper .wpcf7 input[type="email"] {
+	padding: 0.875rem 1rem;
+	border: 1px solid #d1d5db;
+	border-radius: 0.5rem;
+	font-size: 1rem;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.leto-kontakty__form-wrapper .wpcf7 input[type="submit"] {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 1rem;
+	background-color: var(--leto-color-primary, #0E3D2E);
+	color: #ffffff;
+	font-size: 1.0625rem;
+	font-weight: 600;
+	border: none;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	width: 100%;
+}
+
+.leto-kontakty__form-wrapper .wpcf7 input[type="submit"]:hover {
+	background-color: #0a2e22;
+}
+
+.leto-kontakty__form-wrapper .wpcf7 label {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.375rem;
+	font-size: 0.9375rem;
+	color: var(--leto-color-primary, #0E3D2E);
+	font-weight: 500;
+}
+
+.leto-kontakty__form-wrapper .wpcf7-response-output {
+	border-radius: 0.5rem;
+	margin: 0;
+}
+
+/*--------------------------------------------------------------
+# Modal (tour / excursion request)
+--------------------------------------------------------------*/
+body.leto-modal-open {
+	overflow: hidden;
+}
+
+.leto-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1.5rem;
+}
+
+.leto-modal[hidden] {
+	display: none;
+}
+
+.leto-modal__overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(14, 61, 46, 0.45);
+	backdrop-filter: blur(2px);
+	animation: leto-modal-fade 0.2s ease both;
+}
+
+.leto-modal__dialog {
+	position: relative;
+	width: 100%;
+	max-width: 30rem;
+	max-height: calc(100vh - 3rem);
+	overflow-y: auto;
+	background: var(--leto-color-surface, #fff);
+	border-radius: var(--leto-radius, 16px);
+	box-shadow: var(--leto-shadow-modal, 0 24px 60px rgba(14, 61, 46, 0.28));
+	padding: 2.25rem 2rem 2rem;
+	animation: leto-modal-pop 0.25s ease both;
+}
+
+.leto-modal__close {
+	position: absolute;
+	top: 0.75rem;
+	right: 0.75rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.25rem;
+	height: 2.25rem;
+	padding: 0;
+	border: none;
+	border-radius: 50%;
+	background: transparent;
+	color: var(--leto-color-muted, #5b6b64);
+	cursor: pointer;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.leto-modal__close:hover,
+.leto-modal__close:focus-visible {
+	background: rgba(14, 61, 46, 0.08);
+	color: var(--leto-color-primary, #0E3D2E);
+	outline: none;
+}
+
+.leto-modal__close .leto-icon {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+.leto-modal__title {
+	margin: 0 0 0.5rem;
+	font-size: 1.5rem;
+	line-height: 1.2;
+	color: var(--leto-color-primary, #0E3D2E);
+}
+
+.leto-modal__subtitle {
+	margin: 0 0 1.5rem;
+	color: var(--leto-color-muted, #5b6b64);
+	font-size: 0.9375rem;
+}
+
+.leto-modal .wpcf7-form label {
+	display: block;
+	margin-bottom: 1rem;
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--leto-color-primary, #0E3D2E);
+}
+
+.leto-modal .wpcf7-form-control:not(.wpcf7-submit) {
+	width: 100%;
+	padding: 0.75rem 0.875rem;
+	margin-top: 0.375rem;
+	border: 1px solid var(--leto-color-border, #d9e2dd);
+	border-radius: 0.625rem;
+	background: #fff;
+	font-size: 1rem;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.leto-modal .wpcf7-form-control:focus {
+	outline: none;
+	border-color: var(--leto-color-primary, #0E3D2E);
+	box-shadow: 0 0 0 3px rgba(14, 61, 46, 0.12);
+}
+
+.leto-modal .wpcf7-submit {
+	width: 100%;
+	padding: 0.875rem 1.25rem;
+	border: none;
+	border-radius: 0.625rem;
+	background: var(--leto-color-primary, #0E3D2E);
+	color: #fff;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.leto-modal .wpcf7-submit:hover,
+.leto-modal .wpcf7-submit:focus-visible {
+	background: var(--leto-color-link-hover, #0a2e22);
+	outline: none;
+}
+
+.leto-modal .wpcf7-not-valid-tip {
+	margin-top: 0.25rem;
+	font-size: 0.8125rem;
+}
+
+.leto-modal .wpcf7-response-output {
+	margin: 1rem 0 0;
+	border-radius: 0.625rem;
+	font-size: 0.9375rem;
+}
+
+@keyframes leto-modal-fade {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes leto-modal-pop {
+	from { opacity: 0; transform: translateY(12px) scale(0.98); }
+	to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 480px) {
+	.leto-modal__dialog {
+		padding: 2rem 1.25rem 1.5rem;
+	}
+}
